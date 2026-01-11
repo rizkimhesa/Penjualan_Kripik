@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrispyCrunch - Toko Keripik Online</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Chewy&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Auth Page -->
+    <div id="authPage" class="auth-page active">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="loginTab">Login</div>
+                <div class="auth-tab" id="registerTab">Register</div>
+            </div>
+            
+            <div class="auth-form-container">
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form" style="display: block;">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" class="form-control" placeholder="Masukkan email Anda" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Masukkan password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-submit">Masuk</button>
+                    
+                    <div class="demo-info">
+                        <p>Demo login: admin@crispycrunch.com / password: admin123</p>
+                    </div>
+                </form>
+                
+                <!-- Register Form -->
+                <form id="registerForm" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="registerName">Nama Lengkap</label>
+                        <input type="text" id="registerName" class="form-control" placeholder="Masukkan nama lengkap" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" class="form-control" placeholder="Masukkan email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" class="form-control" placeholder="Buat password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Konfirmasi Password</label>
+                        <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Konfirmasi password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-submit">Daftar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Website -->
+    <div id="mainWebsite" style="display: none;">
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <nav class="navbar">
+                    <a href="#" class="logo">
+                        <i class="fas fa-cookie-bite"></i>
+                        CrispyCrunch
+                    </a>
+                    
+                    <ul class="nav-links">
+                        <li><a href="#" class="nav-link active" data-target="home">Beranda</a></li>
+                        <li><a href="#" class="nav-link" data-target="products">Produk</a></li>
+                        <li><a href="#" class="nav-link" data-target="transactions">Transaksi</a></li>
+                        <li><a href="#" class="nav-link" data-target="reports">Laporan</a></li>
+                        <li><a href="#" class="nav-link" data-target="account">Akun</a></li>
+                    </ul>
+                    
+                    <div class="auth-buttons" id="authButtons">
+                        <!-- User menu will be inserted here after login -->
+                    </div>
+                </nav>
+            </div>
+        </header>
+        
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Renyahnya <span>Keripik</span> dalam Setiap Gigitan</h1>
+                        <p>Temukan berbagai varian keripik terenak dengan cita rasa yang menggugah selera. Dari keripik kentang klasik hingga keripik buah eksotis, kami menyajikan kualitas terbaik untuk Anda.</p>
+                        <button class="btn btn-register" id="exploreProducts">Jelajahi Produk</button>
+                    </div>
+                    <div class="hero-image">
+                        <div class="hero-icon">
+                            <i class="fas fa-cookie-bite"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Main Content -->
+        <div class="container">
+            <!-- Home Section -->
+            <section class="main-content active" id="homeContent">
+                <h2 class="section-title">Dashboard</h2>
+                
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <div class="card-icon sales">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Total Penjualan</h3>
+                            <p id="totalSales">Rp 0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-icon products">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Produk Tersedia</h3>
+                            <p id="totalProducts">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-icon transactions">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Transaksi Bulan Ini</h3>
+                            <p id="totalTransactions">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-icon users">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Pelanggan Aktif</h3>
+                            <p id="totalCustomers">0</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="section-title" style="margin-top: 60px;">Produk Terlaris</h2>
+                
+                <div class="products-grid" id="featuredProducts">
+                    <!-- Featured products will be loaded here -->
+                </div>
+            </section>
+            
+            <!-- Products Section -->
+            <section class="main-content" id="productsContent">
+                <div class="table-header">
+                    <h2 class="section-title" style="margin: 0; text-align: left;">Daftar Produk</h2>
+                    <button class="btn btn-register" id="addProductBtn">
+                        <i class="fas fa-plus"></i> Tambah Produk
+                    </button>
+                </div>
+                
+                <div class="data-table">
+                    <div class="table-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Gambar</th>
+                                    <th>Nama Produk</th>
+                                    <th>Kategori</th>
+                                    <th>Harga</th>
+                                    <th>Stok</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody">
+                                <!-- Products will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Transactions Section -->
+            <section class="main-content" id="transactionsContent">
+                <div class="table-header">
+                    <h2 class="section-title" style="margin: 0; text-align: left;">Daftar Transaksi</h2>
+                    <button class="btn btn-register" id="addTransactionBtn">
+                        <i class="fas fa-plus"></i> Transaksi Baru
+                    </button>
+                </div>
+                
+                <div class="data-table">
+                    <div class="table-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID Transaksi</th>
+                                    <th>Tanggal</th>
+                                    <th>Pelanggan</th>
+                                    <th>Produk</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionsTableBody">
+                                <!-- Transactions will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Reports Section -->
+            <section class="main-content" id="reportsContent">
+                <h2 class="section-title">Laporan Penjualan</h2>
+                
+                <div class="chart-container">
+                    <div class="chart-placeholder" id="salesChart">
+                        <div>
+                            <i class="fas fa-chart-bar" style="font-size: 60px; margin-bottom: 20px; display: block; color: var(--primary);"></i>
+                            <p>Grafik penjualan akan ditampilkan di sini</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="data-table" style="margin-top: 40px;">
+                    <div class="table-header">
+                        <h3 style="margin: 0;">Ringkasan Penjualan Bulan Ini</h3>
+                    </div>
+                    <div class="table-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Produk</th>
+                                    <th>Gambar</th>
+                                    <th>Terjual</th>
+                                    <th>Pendapatan</th>
+                                    <th>Profit</th>
+                                </tr>
+                            </thead>
+                            <tbody id="salesSummaryBody">
+                                <!-- Sales summary will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Account Section -->
+            <section class="main-content" id="accountContent">
+                <h2 class="section-title">Kelola Akun</h2>
+                
+                <div class="auth-form">
+                    <div class="form-group">
+                        <label for="accountName">Nama Lengkap</label>
+                        <input type="text" id="accountName" class="form-control" value="Admin CrispyCrunch">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="accountEmail">Email</label>
+                        <input type="email" id="accountEmail" class="form-control" value="admin@crispycrunch.com" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="accountPhone">Nomor Telepon</label>
+                        <input type="tel" id="accountPhone" class="form-control" value="081234567890">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="accountAddress">Alamat</label>
+                        <textarea id="accountAddress" class="form-control" rows="3">Jl. Raya Keripik No. 123, Jakarta</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="accountPassword">Password Baru (kosongkan jika tidak ingin mengubah)</label>
+                        <input type="password" id="accountPassword" class="form-control" placeholder="Masukkan password baru">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="accountConfirmPassword">Konfirmasi Password Baru</label>
+                        <input type="password" id="accountConfirmPassword" class="form-control" placeholder="Konfirmasi password baru">
+                    </div>
+                    
+                    <button class="btn btn-submit" id="updateAccountBtn">Perbarui Profil</button>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <a href="#" class="footer-logo">
+                            <i class="fas fa-cookie-bite"></i> CrispyCrunch
+                        </a>
+                        <p>website by : dio  febrian, M Rizky Nst , Riski mahesa, Nurainun, Shintia, Aulia, aginta, Anisa.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Menu Cepat</h3>
+                        <ul class="footer-links">
+                            <li><a href="#" data-target="home">Beranda</a></li>
+                            <li><a href="#" data-target="products">Produk</a></li>
+                            <li><a href="#" data-target="transactions">Transaksi</a></li>
+                            <li><a href="#" data-target="reports">Laporan</a></li>
+                            <li><a href="#" data-target="account">Akun Saya</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Kontak Kami</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Jl. Raya Keripik No. 123, Jakarta</p>
+                        <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                        <p><i class="fas fa-envelope"></i> info@crispycrunch.com</p>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    &copy; 2023 CrispyCrunch - Toko Keripik Online. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Add/Edit Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Tambah Produk Baru</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm">
+                    <input type="hidden" id="productId" value="">
+                    
+                    <div class="form-group">
+                        <label for="productName">Nama Produk *</label>
+                        <input type="text" id="productName" class="form-control" placeholder="Contoh: Keripik Kentang Original" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productCategory">Kategori *</label>
+                        <select id="productCategory" class="form-control" required>
+                            <option value="">Pilih Kategori</option>
+                            <option value="Kentang">Keripik Kentang</option>
+                            <option value="Singkong">Keripik Singkong</option>
+                            <option value="Pisang">Keripik Pisang</option>
+                            <option value="Buah">Keripik Buah</option>
+                            <option value="Sayuran">Keripik Sayuran</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productPrice">Harga (Rp) *</label>
+                        <input type="number" id="productPrice" class="form-control" placeholder="Contoh: 15000" required min="1000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productStock">Stok *</label>
+                        <input type="number" id="productStock" class="form-control" placeholder="Contoh: 100" required min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productImage">Gambar Produk</label>
+                        <div class="image-upload-container">
+                            <div class="image-preview" id="imagePreview">
+                                <img src="" alt="Preview Gambar" id="previewImage">
+                                <div class="default-text" id="defaultText">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Preview gambar akan muncul di sini</p>
+                                </div>
+                            </div>
+                            <input type="file" id="productImage" class="form-control" accept="image/*">
+                            <small class="form-text">Ukuran maksimal: 2MB. Format: JPG, PNG, GIF</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productDescription">Deskripsi Produk</label>
+                        <textarea id="productDescription" class="form-control" rows="3" placeholder="Deskripsi singkat tentang produk"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-submit" id="submitProductBtn">Simpan Produk</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Transaction Modal -->
+    <div class="modal" id="transactionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Transaksi Baru</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="transactionForm">
+                    <div class="form-group">
+                        <label for="transactionCustomer">Nama Pelanggan *</label>
+                        <input type="text" id="transactionCustomer" class="form-control" placeholder="Nama pelanggan" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transactionProduct">Pilih Produk *</label>
+                        <select id="transactionProduct" class="form-control" required>
+                            <option value="">Pilih Produk</option>
+                            <!-- Products will be loaded here -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transactionQuantity">Jumlah *</label>
+                        <input type="number" id="transactionQuantity" class="form-control" placeholder="Jumlah produk" required min="1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transactionStatus">Status *</label>
+                        <select id="transactionStatus" class="form-control" required>
+                            <option value="completed">Selesai</option>
+                            <option value="pending">Pending</option>
+                            <option value="cancelled">Dibatalkan</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transactionDate">Tanggal Transaksi *</label>
+                        <input type="date" id="transactionDate" class="form-control" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-submit">Simpan Transaksi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
